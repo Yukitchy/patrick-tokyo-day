@@ -137,7 +137,7 @@ intro = ('<div class="wrap"><div class="mapbox"><div id="map" aria-label="Map of
          '<nav class="dial" aria-label="Switch stop"><button type="button" class="ar" data-d="-1" aria-label="Previous stop">&lsaquo;</button><div class="nums-r">' + dn + '</div><button type="button" class="ar" data-d="1" aria-label="Next stop">&rsaquo;</button></nav></div>'
          '<main class="story"><header class="intro"><p class="date">Tuesday, October 13 · 9:30 to 14:30</p><h1>Your day in Tokyo</h1><p class="who">Patrick, with Yuuki. Kanda and Ikebukuro: a bow maker, anime, Pokémon, and a lunch you choose.</p>'
          '<dl class="cn"><div><dt>Meet</dt><dd class="n">9:30</dd><dd class="s">Hotel lobby</dd></div><div><dt>Finish</dt><dd class="n">14:30</dd><dd class="s">Ikebukuro</dd></div></dl>'
-         '<div class="tools"><a class="tool" href="patrick-ikebukuro-oct13.pdf" download>Save as PDF</a></div></header>')
+         '<div class="tools"><a class="tool" href="patrick-ikebukuro-oct13.pdf" target="_blank" rel="noopener">Open the PDF (A4, 1 page)</a></div></header>')
 js = ('<script>const LI=%d,LUNCH=%s,DAYS=%s,P=%s,GEO=[[35.6985,139.7585,"Kanda"],[35.7345,139.7158,"Ikebukuro"]];'
       % (LI, json.dumps(LUNCH_JS), json.dumps(['The whole day'] + [p[5] for p in P[1:]]), json.dumps([None] + [[p[0], p[1], p[2], p[3], p[4], 0] for p in P[1:]])))
 js += open('map.js').read() + '</script>'
