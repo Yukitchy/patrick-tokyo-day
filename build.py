@@ -17,7 +17,7 @@ def route_link(stops):
 
 HOTEL = 'Mitsui Garden Hotel Nihonbashi Premier'
 KOYAMA = ('10:15','Koyama Kyugu, Kanda main store','Bow maker for over 200 years, with its own workshop for bows, arrows and gloves. You can hold the bows and ask the staff anything. This is the main stop, so we take our time.')
-HOTEL_STEP = ('10:00','Your hotel lobby','I pick you up. Kanda is about 10 minutes away by train and a short walk.')
+HOTEL_STEP = ('10:00','Pickup at your hotel lobby','Pickup time to be confirmed; this plan assumes about 10:00. Kanda is about 10 minutes away by train and a short walk.')
 BAR = ('19:00','Optional evening finish: Castle Gate','Rock bar for hard rock and heavy metal in Higashi-Ikebukuro. It opens at 19:00, so this is after our day. Open Tuesday, last order 23:30. Say the word and I will meet you there.')
 COURSES = [
  dict(id='A', chips=['Kyudo shop','Anime and manga','Pokémon Center'], name='Bows & anime', tag='Kanda and Ikebukuro',
@@ -92,7 +92,7 @@ def detail(c):
 <p class="why">{html.escape(c['why'])}</p>
 <div class="photos">{ph}</div>
 <div class="dgrid">
-<div><h3>The day</h3><ol class="steps">{st}</ol></div>
+<div><h3>The day</h3><p class="moves" style="margin:0 0 10px">Times are if we start at 10:00, and they move with the pickup time.</p><ol class="steps">{st}</ol></div>
 <div><h3>The route</h3><div class="mapbox"><iframe src="{route_emb(c['stops'])}" loading="lazy" title="Route for course {c['id']}" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 <p class="moves">{c['moves']} <a href="{route_link(c['stops'])}" target="_blank" rel="noopener">Open the route in Google Maps ↗</a></p></div>
 </div>
@@ -261,8 +261,9 @@ footer.wrap{{padding:26px 20px 60px;font-size:13px;color:var(--mute);border-top:
 </div></div>
 <div class="wrap hbody">
 <p>Every course starts at Koyama Kyugu and then goes to Ikebukuro, the district for anime, manga and Pokémon. What goes around it is up to you. The metal bars open in the evening, so that part is optional.</p>
+<p style="font-size:15px;color:var(--mute);margin-top:10px">Pickup is at your hotel lobby (Mitsui Garden Hotel Nihonbashi Premier). The time is still to be confirmed; this plan assumes about 10:00.</p>
 <div class="tools"><button class="tool" type="button" onclick="window.print()">Save as PDF</button><a class="tool" href="patrick-ikebukuro-oct13.pdf" target="_blank" rel="noopener">One-page summary (PDF)</a></div>
-<ul class="facts"><li><b>Guide</b> Yuuki</li><li><b>Time</b> 10:00 to about 15:00</li><li><b>Start</b> your hotel lobby</li><li><b>Included</b> trains and entry</li></ul>
+<ul class="facts"><li><b>Guide</b> Yuuki</li><li><b>Time</b> about 10:00 to 15:00 if we start at 10:00</li><li><b>Pickup</b> your hotel lobby, time to be confirmed</li><li><b>Included</b> trains and entry</li></ul>
 </div>
 </header>
 <div class="wrap">
@@ -275,14 +276,14 @@ footer.wrap{{padding:26px 20px 60px;font-size:13px;color:var(--mute);border-top:
 <a class="eat" href="{gm('LANDSROCK Ikebukuro')}" target="_blank" rel="noopener"><span class="eb"><strong>LANDSROCK</strong><em>West Ikebukuro · metal and hard rock</em><span>Sixth-floor bar with a DJ and a big screen, requests welcome. Open 19:00 to 5:00. Closed Sundays.</span><i>Open in Google Maps ↗</i></span></a>
 </div>
 <p class="hint" style="margin:0 0 6px;font-size:14px">Hours are from each bar's own page: <a href="https://peraichi.com/landing_pages/view/castlegate" target="_blank" rel="noopener">Castle Gate</a>, <a href="https://lands-rock.com/" target="_blank" rel="noopener">LANDSROCK</a>.</p>
-<div class="sechead"><span class="n">3</span><div><b>Where we meet</b> <span>Your hotel lobby at 10:00.</span></div></div>
+<div class="sechead"><span class="n">3</span><div><b>Where we meet</b> <span>Your hotel lobby, time to be confirmed (this plan assumes about 10:00).</span></div></div>
 <div class="arrival">
-<div><p>I come to the lobby of the Mitsui Garden Hotel in Nihonbashi. Kanda, where the bow shop is, is about 10 minutes away.</p>
+<div><p>I come to the lobby of the Mitsui Garden Hotel in Nihonbashi (Mitsui Garden Hotel Nihonbashi Premier). Pickup time is to be confirmed; the plan assumes about 10:00. Kanda, where the bow shop is, is about 10 minutes away.</p>
 <p class="hint">If you would rather meet at a station, or start a little later after the night in Ryogoku, tell me and I will change it.</p></div>
 <div class="mapbox"><iframe src="{emb(HOTEL)}" loading="lazy" title="Mitsui Garden Hotel Nihonbashi" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </div>
 </div>
-<footer class="wrap"><p>Reply to Tree or Yuuki with A, B or C, or mix them. Times are approximate and can move on the day. Shop hours are from each shop's own site for Tuesday, October 13.</p>
+<footer class="wrap"><p>Reply to Tree or Yuuki with A, B or C, or mix them. Times are approximate and assume a 10:00 start; they move with the pickup time. Shop hours are from each shop's own site for Tuesday, October 13.</p>
 <details class="cred"><summary>Photo credits</summary><p>{credits}, via Wikimedia Commons.</p></details></footer>
 <script>
 (function(){{

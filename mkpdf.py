@@ -15,9 +15,9 @@ PL=[(1,'Hotel lobby',35.6882,139.7735,'Mitsui Garden Hotel Nihonbashi Premier'),
 (9,'Disk Union Ikebukuro',35.7262,139.7135,'12:00-20:00'),
 (10,'Castle Gate (bar)',35.7312,139.7141,'19:00-24:00, closed Sun/Mon'),
 (11,'LANDSROCK (bar)',35.7345,139.7085,'19:00-5:00, closed Sun')]
-COURSE=[('A','Bows & anime','1 → 2 → 3 → 4 → 5',[('10:00','Hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:30','Marunouchi Line to Ikebukuro, 17 min'),('12:00','Animate main store (3)'),('13:10','Lunch, Kikanbo (4)'),('14:20','Pokémon Center, Sunshine City (5)'),('15:00','Done in Ikebukuro')]),
-('B','Bows, wrestling & anime','1 → 2 → 6 → 7 → 3',[('10:00','Hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:35','Lunch, Kikanbo Kanda (6)'),('12:25','Yamanote Line to Sugamo, 20 min'),('12:50','Toudoukan wrestling shop (7)'),('13:45','Yamanote, 2 stops to Ikebukuro'),('14:00','Animate main store (3)'),('15:00','Done in Ikebukuro')]),
-('C','Bows, records & metal','1 → 2 → 8 → 4 → 9 → 10',[('10:00','Hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:30','Walk to Ochanomizu, guitar street'),('12:00','Disk Union Hard Rock / Metal (8)'),('12:50','Marunouchi Line to Ikebukuro, 15 min'),('13:20','Lunch, Kikanbo (4)'),('14:10','Disk Union Ikebukuro (9)'),('15:00','Done in Ikebukuro'),('19:00','Optional: Castle Gate (10)')])]
+COURSE=[('A','Bows & anime','1 → 2 → 3 → 4 → 5',[('10:00','Pickup, hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:30','Marunouchi Line to Ikebukuro, 17 min'),('12:00','Animate main store (3)'),('13:10','Lunch, Kikanbo (4)'),('14:20','Pokémon Center, Sunshine City (5)'),('15:00','Done in Ikebukuro')]),
+('B','Bows, wrestling & anime','1 → 2 → 6 → 7 → 3',[('10:00','Pickup, hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:35','Lunch, Kikanbo Kanda (6)'),('12:25','Yamanote Line to Sugamo, 20 min'),('12:50','Toudoukan wrestling shop (7)'),('13:45','Yamanote, 2 stops to Ikebukuro'),('14:00','Animate main store (3)'),('15:00','Done in Ikebukuro')]),
+('C','Bows, records & metal','1 → 2 → 8 → 4 → 9 → 10',[('10:00','Pickup, hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:30','Walk to Ochanomizu, guitar street'),('12:00','Disk Union Hard Rock / Metal (8)'),('12:50','Marunouchi Line to Ikebukuro, 15 min'),('13:20','Lunch, Kikanbo (4)'),('14:10','Disk Union Ikebukuro (9)'),('15:00','Done in Ikebukuro'),('19:00','Optional: Castle Gate (10)')])]
 cols=''.join(f'<div class="c"><h3><b>{i}</b> {n}</h3><p class="r">{r}</p><ol>'+''.join(f'<li><b>{t}</b>{x}</li>' for t,x in s)+'</ol></div>' for i,n,r,s in COURSE)
 legend=''.join(f'<li><i>{n}</i>{nm}<span>{h}</span></li>' for n,nm,_,_,h in PL)
 html=f'''<!doctype html><html><head><meta charset="utf-8"><title>Tokyo, Tuesday October 13</title>
@@ -37,10 +37,10 @@ ul.lg{{list-style:none;margin:3mm 0 0;padding:0;display:grid;grid-template-colum
 </style></head><body>
 <p class="k">Tokyo · Tuesday, October 13 · Guide: Yuuki</p>
 <h1>Bows first, then Ikebukuro</h1>
-<p class="sub">Start 10:00 at the hotel lobby, Koyama Kyugu at 10:15, done around 15:00. Pick one course.</p>
+<p class="sub">Pickup at your hotel lobby (Mitsui Garden Hotel Nihonbashi Premier): time to be confirmed. Times below are if we start at 10:00. Pick one course.</p>
 <div class="top"><div id="map"></div><div id="map2"></div></div><ul class="lg">{legend}</ul>
 <div class="cs">{cols}</div>
-<div class="ft"><img src="data:image/png;base64,{qr}"><div><p><b>Full plan, photos and route maps:</b> {URL}</p><p>The two bars open in the evening, after the day plan, and are open on Tuesdays. Hours are from each shop's own site. Times are approximate.</p></div></div>
+<div class="ft"><img src="data:image/png;base64,{qr}"><div><p><b>Full plan, photos and route maps:</b> {URL}</p><p>The two bars open in the evening, after the day plan, and are open on Tuesdays. Hours are from each shop's own site. Times are approximate and move with the pickup time.</p></div></div>
 <script>var P={json.dumps([[n,la,lo] for n,_,la,lo,_ in PL])};
 function mk(id,ids){{var m=L.map(id,{{zoomControl:false}});L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:19,attribution:'© OpenStreetMap'}}).addTo(m);var pts=P.filter(function(p){{return ids.indexOf(p[0])>=0}});
 pts.forEach(function(p){{L.marker([p[1],p[2]],{{icon:L.divIcon({{className:'',html:'<div class="num">'+p[0]+'</div>',iconSize:[22,22],iconAnchor:[11,11]}})}}).addTo(m)}});
