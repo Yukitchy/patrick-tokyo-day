@@ -10,11 +10,11 @@ PL=[(1,'Hotel lobby',35.6865,139.7740,'Mitsui Garden Hotel Nihonbashi Premier'),
 (5,'Pokémon Center Mega Tokyo',35.7278,139.7200,'Open 10:00-20:00'),
 (6,'Disk Union Ikebukuro (if it fits)',35.7287,139.7138,'Open 12:00-20:00')]
 # lunch options: letter, name, lat, lon, hours
-LU=[('a','Kikanbo, spicy miso ramen',35.7291,139.7153,'11:00-21:30'),('b','Gyukatsu Motomura, beef cutlet',35.7290,139.7186,'11:00-22:00'),
-('c','Mutekiya, tonkotsu ramen',35.7269,139.7117,'from 10:30'),('d','Anpuku, creative udon',35.7324,139.7090,'lunch 11:00-15:00'),
-('e','Yan, Sichuan and gyoza',35.7301,139.7072,'lunch 11:30-15:00')]
+LU=[('a','Kikanbo, spicy ramen',35.7291,139.7153,'11:00-21:30'),('b','Mutekiya, tonkotsu ramen',35.7269,139.7117,'from 10:30'),
+('c','Shimizuya, pork cutlet',35.7319,139.7144,'11:00-20:00'),('d','Wakataka, conveyor sushi',35.7295,139.7156,'11:30-22:00'),
+('e','Saffron, Indian curry',35.7294,139.7165,'lunch 11:00-15:00'),('f','Unatatsu, grilled eel',35.7317,139.7162,'lunch 11:30-14:00')]
 TT=[('9:30','Meet at the hotel lobby (1)'),('9:40','Ginza Line, Mitsukoshimae to Kanda, 2 min, then walk 5 min'),('10:00','Koyama Kyugu bow shop (2)'),
-('10:50','Marunouchi Line, Awajicho to Ikebukuro, 17 min'),('11:30','Animate main store (3)'),('12:15','Lunch, you pick one of a to e (4)'),
+('10:50','Marunouchi Line, Awajicho to Ikebukuro, 17 min'),('11:30','Animate main store (3)'),('12:15','Lunch, you pick one of a to f (4)'),
 ('13:15','Pokémon Center, Sunshine City (5)'),('14:15','Disk Union, if it fits (6)'),('14:30','Done, in Ikebukuro'),
 ('','Back to Nihonbashi: Marunouchi Line to Otemachi, Hanzomon Line one stop, about 30 min')]
 tt=''.join(f'<li><b>{t}</b>{x}</li>' for t,x in TT)
@@ -42,7 +42,7 @@ ol,ul{{list-style:none;margin:0;padding:0}}
 <h1>Bows first, then Ikebukuro</h1>
 <p class="sub">Meet at your hotel lobby (Mitsui Garden Hotel Nihonbashi Premier) at 9:30. Done around 14:30 in Ikebukuro.</p>
 <div class="maps"><div id="map"></div><div id="map2"></div></div>
-<div class="cols"><div class="tt"><h2>The day</h2><ol>{tt}</ol></div><div class="lg"><h2>Where and when it is open</h2><ul>{legend}</ul><h2 style="margin-top:3mm">Lunch, you pick one (4)</h2><ul>{lunch}</ul></div></div>
+<div class="cols"><div class="tt"><h2>The day</h2><ol>{tt}</ol></div><div class="lg"><h2>Where and when it is open</h2><ul>{legend}</ul><h2 style="margin-top:3mm">Lunch, you pick one of six (4)</h2><ul>{lunch}</ul></div></div>
 <div class="ft"><img src="data:image/png;base64,{qr}"><div><p><b>Full plan, photos and route map:</b> {URL}</p><p>If you want more tonight: Castle Gate (19:00-24:00, closed Sun/Mon) and LANDSROCK (19:00-5:00, closed Sun), both rock bars in Ikebukuro. Times are approximate. Hours are from each shop's own site.</p></div></div>
 <script>var P={json.dumps([[n,la,lo] for n,_,la,lo,_ in PL])},LU={json.dumps([[n,la,lo] for n,_,la,lo,_ in LU])};
 function mk(id,ids,lu){{var m=L.map(id,{{zoomControl:false}});L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:19,attribution:'© OpenStreetMap'}}).addTo(m);var pts=P.filter(function(p){{return ids.indexOf(p[0])>=0}}),all=[];
