@@ -16,56 +16,59 @@ def route_link(stops):
             + ('&waypoints=' + '%7C'.join(s[1:-1]) if len(s) > 2 else '') + '&travelmode=transit')
 
 HOTEL = 'Mitsui Garden Hotel Nihonbashi Premier'
-KOYAMA = ('10:15','Koyama Kyugu, Kanda main store','Bow maker for over 200 years, with its own workshop for bows, arrows and gloves. You can hold the bows and ask the staff anything. This is the main stop, so we take our time.')
-HOTEL_STEP = ('10:00','Pickup at your hotel lobby','Pickup time to be confirmed; this plan assumes about 10:00. Kanda is about 10 minutes away by train and a short walk.')
+KOYAMA = ('10:15','Koyama Kyugu, Kanda main store','Bow maker for over 200 years, with its own workshop for bows, arrows and gloves. It opens at 10:00. You can hold the bows and ask the staff anything. This is the main stop, so we take our time.')
+START = [('9:00','Pickup at your hotel lobby','Confirmed for 9:00. Mitsukoshimae station is right next to the hotel.'),
+         ('9:15','Train to Kanda Myojin','Ginza Line from Mitsukoshimae to Suehirocho, about 5 minutes, then a short walk.'),
+         ('9:30','Kanda Myojin shrine','An old Edo shrine above Akihabara, popular with anime fans. We walk the grounds in the quiet before the bow shop opens.'),
+         ('10:00','Walk to Koyama Kyugu','About 15 minutes on foot, downhill.')]
 BAR = ('19:00','Optional evening finish: Castle Gate','Rock bar for hard rock and heavy metal in Higashi-Ikebukuro. It opens at 19:00, so this is after our day. Open Tuesday, last order 23:30. Say the word and I will meet you there.')
 COURSES = [
- dict(id='A', chips=['Kyudo shop','Anime and manga','Pokémon Center'], name='Bows & anime', tag='Kanda and Ikebukuro',
-  why='The anime course. The bow shop first, then Ikebukuro: the big Animate store, spicy ramen, and the Pokémon Center in Sunshine City. A good Tuesday for it, because every shop is open.',
-  steps=[HOTEL_STEP, KOYAMA,
-         ('11:30','Train to Ikebukuro','Marunouchi Line from Awajicho station, one minute from the bow shop. About 17 minutes, no changes.'),
-         ('12:00','Animate Ikebukuro main store','The flagship store of Japan\'s biggest anime shop chain. About 5 minutes on foot from the east exit. Manga, character goods, and the streets around it are full of anime shops.'),
-         ('13:10','Lunch at Kikanbo Ikebukuro','Spicy miso ramen with chili and Sichuan pepper. You can ask for it milder.'),
-         ('14:00','Walk to Sunshine City','Down Sunshine 60 Street, a long shopping street of anime, game and manga shops. About 15 minutes at a slow pace.'),
-         ('14:20','Pokémon Center Mega Tokyo','On the second floor of the Alpa shopping area in Sunshine City. The biggest Pokémon store in Tokyo.'),
-         ('15:00','Done','In Ikebukuro. Back to Nihonbashi is about 30 minutes: Marunouchi Line to Otemachi, then one stop on the Hanzomon Line. Or we split here.')],
-  stops=[HOTEL,'Koyama Kyugu Kanda','Animate Ikebukuro Main Store','Kikanbo Ikebukuro','Pokemon Center Mega Tokyo Sunshine City'],
-  moves='Hotel → Kanda about 10 min. Awajicho → Ikebukuro about 17 min on the Marunouchi Line. Animate → Kikanbo → Sunshine City is all on foot.',
+ dict(id='A', chips=['Shrine and kyudo shop','Anime and manga','Pokémon Center'], name='Bows & anime', tag='Kanda and Ikebukuro',
+  why='The anime course. The shrine and the bow shop first, then Ikebukuro: the big Animate store, spicy ramen, and the Pokémon Center in Sunshine City. Everything is open by the time we arrive.',
+  steps=START+[KOYAMA,
+         ('11:00','Train to Ikebukuro','Marunouchi Line from Awajicho station, one minute from the bow shop. About 17 minutes, no changes.'),
+         ('11:30','Animate Ikebukuro main store','The flagship store of Japan\'s biggest anime shop chain. About 5 minutes on foot from the east exit. Manga, character goods, and the streets around it are full of anime shops.'),
+         ('12:30','Lunch at Kikanbo Ikebukuro','Spicy miso ramen with chili and Sichuan pepper. You can ask for it milder.'),
+         ('13:15','Walk to Sunshine City','Down Sunshine 60 Street, a long shopping street of anime, game and manga shops. About 15 minutes at a slow pace.'),
+         ('13:30','Pokémon Center Mega Tokyo','On the second floor of the Alpa shopping area in Sunshine City. The biggest Pokémon store in Tokyo.'),
+         ('14:00','Done','In Ikebukuro. Back to Nihonbashi is about 30 minutes: Marunouchi Line to Otemachi, then one stop on the Hanzomon Line. Or we split here.')],
+  stops=[HOTEL,'Kanda Myojin','Koyama Kyugu Kanda','Animate Ikebukuro Main Store','Kikanbo Ikebukuro','Pokemon Center Mega Tokyo Sunshine City'],
+  moves='Hotel → Kanda Myojin about 5 min on the Ginza Line plus a short walk. Awajicho → Ikebukuro about 17 min on the Marunouchi Line. In Ikebukuro everything is on foot.',
   food=[('Kikanbo Ikebukuro','Ikebukuro · spicy miso ramen','Red miso broth with chili and Sichuan pepper. You pick how hot and how numbing. Open 11:00 to 21:30.','Kikanbo Ikebukuro')],
-  good='The most anime of the three, and the least train time after the first ride.',
+  good='The most anime of the three, and only one long train ride.',
   mind='Kikanbo is spicy, but you can ask for it milder. The metal bars in Ikebukuro open at 19:00, after this plan ends.',
-  links=[('Koyama Kyugu','https://koyama-kyugu.co.jp/store/'),('Animate Ikebukuro','https://www.animate.co.jp/shop/ikebukuro/'),('Kikanbo','https://kikanbo.co.jp/pages/shop'),('Pokémon Center Mega Tokyo','https://shop.pokemon.co.jp/ja/shop/pokemoncenter-megatokyo/')]),
- dict(id='B', chips=['Kyudo shop','Pro wrestling shop','Animate'], name='Bows, wrestling & anime', tag='Kanda, Sugamo and Ikebukuro',
-  why='The bow shop, ramen, then two floors of pro wrestling goods in Sugamo, and on to Animate in Ikebukuro. It is the day after Ryogoku, so you will have things to look for.',
-  steps=[HOTEL_STEP, KOYAMA,
-         ('11:35','Lunch at Kikanbo Kanda','About 7 minutes on foot from the bow shop. Spicy miso ramen with chili and Sichuan pepper, and it opens at 11:00, so no line yet.'),
-         ('12:25','Train to Sugamo','JR Yamanote Line from Kanda. About 20 minutes, no changes.'),
-         ('12:50','Toudoukan pro wrestling shop','Two floors of wrestling and MMA goods: masks, costumes, signed items, old programs and figures. One minute from the north exit of Sugamo station.'),
-         ('13:45','Train to Ikebukuro','Yamanote Line, two stops, about 5 minutes.'),
-         ('14:00','Animate Ikebukuro main store','About 5 minutes on foot from the east exit. Manga, character goods, and anime shops on the streets around it.'),
-         ('15:00','Done','In Ikebukuro. Back to Nihonbashi is about 30 minutes: Marunouchi Line to Otemachi, then one stop on the Hanzomon Line.')],
-  stops=[HOTEL,'Koyama Kyugu Kanda','Kikanbo Kanda Honten','Toudoukan Sugamo','Animate Ikebukuro Main Store'],
-  moves='Hotel → Kanda about 10 min. Kanda → Sugamo about 20 min on the Yamanote Line. Sugamo → Ikebukuro about 5 min.',
+  links=[('Kanda Myojin','https://www.kandamyoujin.or.jp/'),('Koyama Kyugu','https://koyama-kyugu.co.jp/store/'),('Animate Ikebukuro','https://www.animate.co.jp/shop/ikebukuro/'),('Kikanbo','https://kikanbo.co.jp/pages/shop'),('Pokémon Center Mega Tokyo','https://shop.pokemon.co.jp/ja/shop/pokemoncenter-megatokyo/')]),
+ dict(id='B', chips=['Shrine and kyudo shop','Pro wrestling shop','Animate'], name='Bows, wrestling & anime', tag='Kanda, Sugamo and Ikebukuro',
+  why='The shrine and the bow shop, then ramen, two floors of pro wrestling goods in Sugamo, and Animate in Ikebukuro. It is the day after Ryogoku, so you will have things to look for.',
+  steps=START+[KOYAMA,
+         ('11:00','Lunch at Kikanbo Kanda','About 7 minutes on foot from the bow shop. Spicy miso ramen with chili and Sichuan pepper. It opens at 11:00, so no line yet.'),
+         ('11:55','Train to Sugamo','JR Yamanote Line from Kanda. About 20 minutes, no changes.'),
+         ('12:20','Toudoukan pro wrestling shop','Two floors of wrestling and MMA goods: masks, costumes, signed items, old programs and figures. One minute from the north exit of Sugamo station.'),
+         ('13:10','Train to Ikebukuro','Yamanote Line, two stops, about 5 minutes.'),
+         ('13:20','Animate Ikebukuro main store','About 5 minutes on foot from the east exit. Manga, character goods, and anime shops on the streets around it.'),
+         ('14:00','Done','In Ikebukuro. Back to Nihonbashi is about 30 minutes: Marunouchi Line to Otemachi, then one stop on the Hanzomon Line.')],
+  stops=[HOTEL,'Kanda Myojin','Koyama Kyugu Kanda','Kikanbo Kanda Honten','Toudoukan Sugamo','Animate Ikebukuro Main Store'],
+  moves='Hotel → Kanda Myojin about 5 min on the Ginza Line plus a short walk. Kanda → Sugamo about 20 min on the Yamanote Line. Sugamo → Ikebukuro about 5 min.',
   food=[('Kikanbo Kanda','Kanda · spicy miso ramen','Red miso broth with chili and Sichuan pepper. You can ask for it milder. Open 11:00 to 21:30 Monday to Saturday.','Kikanbo Kanda Honten')],
   good='The wrestling course. Toudoukan is open every day of the year and sells things you will not find at the venue.',
   mind='Three train rides, but short ones. Pokémon Center and the Ikebukuro metal bars are not in this plan; the bars open at 19:00.',
-  links=[('Koyama Kyugu','https://koyama-kyugu.co.jp/store/'),('Kikanbo','https://kikanbo.co.jp/pages/shop'),('Toudoukan','https://toudoukan.com/'),('Animate Ikebukuro','https://www.animate.co.jp/shop/ikebukuro/')]),
- dict(id='C', chips=['Kyudo shop','Heavy metal records','Metal bar at night'], name='Bows, records & metal', tag='Kanda, Ochanomizu and Ikebukuro',
-  why='The music course. The bow shop, then the world\'s biggest hard rock and heavy metal record store, and a second rock record store in Ikebukuro. At night, if you want, a metal bar.',
-  steps=[HOTEL_STEP, KOYAMA,
-         ('11:30','Walk to Ochanomizu','About 10 minutes. Guitar shops line the streets here. Hours differ shop by shop, so we look from outside until the metal store opens.'),
-         ('12:00','Disk Union Hard Rock / Heavy Metal store','In the basement by Ochanomizu station, only rock and metal. Japanese pressings with the paper obi, new and used. Opens at 12:00 on weekdays.'),
-         ('12:50','Train to Ikebukuro','Marunouchi Line from Ochanomizu. About 15 minutes, no changes.'),
-         ('13:20','Lunch at Kikanbo Ikebukuro','Spicy miso ramen with chili and Sichuan pepper. You can ask for it milder.'),
-         ('14:10','Disk Union Ikebukuro','Rock records and band T-shirts on the 9th floor, open 12:00 to 20:00. A short walk south-east of the station.'),
-         ('15:00','Done','In Ikebukuro. Or stay for the evening option below.'),
+  links=[('Kanda Myojin','https://www.kandamyoujin.or.jp/'),('Koyama Kyugu','https://koyama-kyugu.co.jp/store/'),('Kikanbo','https://kikanbo.co.jp/pages/shop'),('Toudoukan','https://toudoukan.com/'),('Animate Ikebukuro','https://www.animate.co.jp/shop/ikebukuro/')]),
+ dict(id='C', chips=['Shrine and kyudo shop','Heavy metal records','Metal bar at night'], name='Bows, records & metal', tag='Kanda, Ikebukuro and Ochanomizu',
+  why='The music course. The shrine and the bow shop, then an early ramen and a rock record store in Ikebukuro, then the world\'s biggest hard rock and heavy metal record store in Ochanomizu, close to Kanda on the way home. At night, if you want, a metal bar.',
+  steps=START+[KOYAMA,
+         ('11:00','Train to Ikebukuro','Marunouchi Line from Awajicho station, one minute from the bow shop. About 17 minutes, no changes.'),
+         ('11:20','Early lunch at Kikanbo Ikebukuro','Spicy miso ramen with chili and Sichuan pepper, just after it opens at 11:00. You can ask for it milder.'),
+         ('12:10','Disk Union Ikebukuro','Rock records and band T-shirts on the 9th floor, open from 12:00. A short walk south-east of the station.'),
+         ('13:00','Train to Ochanomizu','Marunouchi Line, about 15 minutes, no changes.'),
+         ('13:15','Disk Union Hard Rock / Heavy Metal store','In the basement by Ochanomizu station, only rock and metal. Japanese pressings with the paper obi, new and used. Guitar shops line the streets nearby.'),
+         ('14:00','Done','At Ochanomizu, close to Kanda. Back to Nihonbashi is about 15 minutes, or stay for the evening option below.'),
          BAR],
-  stops=[HOTEL,'Koyama Kyugu Kanda','Disk Union Ochanomizu Hard Rock Heavy Metal','Kikanbo Ikebukuro','Disk Union Ikebukuro','Rock Bar Castle gate Ikebukuro'],
-  moves='Hotel → Kanda about 10 min. Kanda → Ochanomizu 10 min on foot. Ochanomizu → Ikebukuro about 15 min on the Marunouchi Line.',
+  stops=[HOTEL,'Kanda Myojin','Koyama Kyugu Kanda','Kikanbo Ikebukuro','Disk Union Ikebukuro','Disk Union Ochanomizu Hard Rock Heavy Metal','Rock Bar Castle gate Ikebukuro'],
+  moves='Hotel → Kanda Myojin about 5 min on the Ginza Line plus a short walk. Awajicho → Ikebukuro about 17 min on the Marunouchi Line, and about 15 min back to Ochanomizu.',
   food=[('Kikanbo Ikebukuro','Ikebukuro · spicy miso ramen','Red miso broth with chili and Sichuan pepper. You pick how hot and how numbing. Open 11:00 to 21:30.','Kikanbo Ikebukuro')],
-  good='Metal records in the morning and a metal bar at night, with the bow shop in between.',
-  mind='The metal record store opens at 12:00, so the bow shop comes first. The bar is an evening add-on, not part of the 10:00 to 15:00 plan.',
-  links=[('Koyama Kyugu','https://koyama-kyugu.co.jp/store/'),('Disk Union Hard Rock / Heavy Metal','https://diskunion.net/shop/ochanomizu_metal'),('Disk Union Ikebukuro','https://diskunion.net/shop/ikebukuro'),('Castle Gate','https://peraichi.com/landing_pages/view/castlegate')]),
+  good='Metal records in the day and a metal bar at night, with the bow shop in between. The day ends near Kanda.',
+  mind='Both record stores open at 12:00 on weekdays, so we eat first. The bar is an evening add-on, not part of the 9:00 to 14:00 plan.',
+  links=[('Kanda Myojin','https://www.kandamyoujin.or.jp/'),('Koyama Kyugu','https://koyama-kyugu.co.jp/store/'),('Disk Union Ikebukuro','https://diskunion.net/shop/ikebukuro'),('Disk Union Hard Rock / Heavy Metal','https://diskunion.net/shop/ochanomizu_metal'),('Castle Gate','https://peraichi.com/landing_pages/view/castlegate')]),
 ]
 
 def menu(c):
@@ -92,7 +95,7 @@ def detail(c):
 <p class="why">{html.escape(c['why'])}</p>
 <div class="photos">{ph}</div>
 <div class="dgrid">
-<div><h3>The day</h3><p class="moves" style="margin:0 0 10px">Times are if we start at 10:00, and they move with the pickup time.</p><ol class="steps">{st}</ol></div>
+<div><h3>The day</h3><ol class="steps">{st}</ol></div>
 <div><h3>The route</h3><div class="mapbox"><iframe src="{route_emb(c['stops'])}" loading="lazy" title="Route for course {c['id']}" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 <p class="moves">{c['moves']} <a href="{route_link(c['stops'])}" target="_blank" rel="noopener">Open the route in Google Maps ↗</a></p></div>
 </div>
@@ -260,10 +263,10 @@ footer.wrap{{padding:26px 20px 60px;font-size:13px;color:var(--mute);border-top:
 <div class="snav"><button class="slabel" type="button"></button><div class="dots">{''.join(f'<button type="button" aria-label="Show course {c["id"]}"></button>' for c in COURSES)}</div></div>
 </div></div>
 <div class="wrap hbody">
-<p>Every course starts at Koyama Kyugu and then goes to Ikebukuro, the district for anime, manga and Pokémon. What goes around it is up to you. The metal bars open in the evening, so that part is optional.</p>
-<p style="font-size:15px;color:var(--mute);margin-top:10px">Pickup is at your hotel lobby (Mitsui Garden Hotel Nihonbashi Premier). The time is still to be confirmed; this plan assumes about 10:00.</p>
+<p>Every course starts at Kanda Myojin shrine and Koyama Kyugu and then goes to Ikebukuro, the district for anime, manga and Pokémon. What goes around it is up to you. The metal bars open in the evening, so that part is optional.</p>
+<p style="font-size:15px;color:var(--mute);margin-top:10px">Pickup is at your hotel lobby (Mitsui Garden Hotel Nihonbashi Premier) at 9:00. The bow shop opens at 10:00, so we start with a walk around Kanda Myojin shrine.</p>
 <div class="tools"><button class="tool" type="button" onclick="window.print()">Save as PDF</button><a class="tool" href="patrick-ikebukuro-oct13.pdf" target="_blank" rel="noopener">One-page summary (PDF)</a></div>
-<ul class="facts"><li><b>Guide</b> Yuuki</li><li><b>Time</b> about 10:00 to 15:00 if we start at 10:00</li><li><b>Pickup</b> your hotel lobby, time to be confirmed</li><li><b>Included</b> trains and entry</li></ul>
+<ul class="facts"><li><b>Guide</b> Yuuki</li><li><b>Time</b> 9:00 to about 14:00</li><li><b>Pickup</b> your hotel lobby, 9:00</li><li><b>Included</b> trains and entry</li></ul>
 </div>
 </header>
 <div class="wrap">
@@ -276,14 +279,14 @@ footer.wrap{{padding:26px 20px 60px;font-size:13px;color:var(--mute);border-top:
 <a class="eat" href="{gm('LANDSROCK Ikebukuro')}" target="_blank" rel="noopener"><span class="eb"><strong>LANDSROCK</strong><em>West Ikebukuro · metal and hard rock</em><span>Sixth-floor bar with a DJ and a big screen, requests welcome. Open 19:00 to 5:00. Closed Sundays.</span><i>Open in Google Maps ↗</i></span></a>
 </div>
 <p class="hint" style="margin:0 0 6px;font-size:14px">Hours are from each bar's own page: <a href="https://peraichi.com/landing_pages/view/castlegate" target="_blank" rel="noopener">Castle Gate</a>, <a href="https://lands-rock.com/" target="_blank" rel="noopener">LANDSROCK</a>.</p>
-<div class="sechead"><span class="n">3</span><div><b>Where we meet</b> <span>Your hotel lobby, time to be confirmed (this plan assumes about 10:00).</span></div></div>
+<div class="sechead"><span class="n">3</span><div><b>Where we meet</b> <span>Your hotel lobby at 9:00.</span></div></div>
 <div class="arrival">
-<div><p>I come to the lobby of the Mitsui Garden Hotel in Nihonbashi (Mitsui Garden Hotel Nihonbashi Premier). Pickup time is to be confirmed; the plan assumes about 10:00. Kanda, where the bow shop is, is about 10 minutes away.</p>
+<div><p>I come to the lobby of the Mitsui Garden Hotel in Nihonbashi (Mitsui Garden Hotel Nihonbashi Premier). Pickup is at 9:00. Kanda, where the bow shop is, is about 15 minutes away.</p>
 <p class="hint">If you would rather meet at a station, or start a little later after the night in Ryogoku, tell me and I will change it.</p></div>
 <div class="mapbox"><iframe src="{emb(HOTEL)}" loading="lazy" title="Mitsui Garden Hotel Nihonbashi" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </div>
 </div>
-<footer class="wrap"><p>Reply to Tree or Yuuki with A, B or C, or mix them. Times are approximate and assume a 10:00 start; they move with the pickup time. Shop hours are from each shop's own site for Tuesday, October 13.</p>
+<footer class="wrap"><p>Reply to Tree or Yuuki with A, B or C, or mix them. Times are approximate and can move on the day. Shop hours are from each shop's own site for Tuesday, October 13.</p>
 <details class="cred"><summary>Photo credits</summary><p>{credits}, via Wikimedia Commons.</p></details></footer>
 <script>
 (function(){{

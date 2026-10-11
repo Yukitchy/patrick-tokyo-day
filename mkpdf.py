@@ -5,19 +5,21 @@ URL='https://yukitchy.github.io/patrick-tokyo-day/'
 q=qrcode.make(URL,box_size=6,border=1);b=io.BytesIO();q.save(b,'PNG');qr=base64.b64encode(b.getvalue()).decode()
 # n, name, lat, lon, hours on Tue Oct 13
 PL=[(1,'Hotel lobby',35.6882,139.7735,'Mitsui Garden Hotel Nihonbashi Premier'),
-(2,'Koyama Kyugu (Kanda)',35.6949,139.7690,'10:00-19:00'),
-(3,'Animate Ikebukuro',35.7303,139.7152,'10:00-21:00'),
-(4,'Kikanbo Ikebukuro',35.7308,139.7132,'11:00-21:30'),
-(5,'Pokémon Center Mega Tokyo',35.7289,139.7192,'10:00-20:00'),
-(6,'Kikanbo Kanda',35.6930,139.7715,'11:00-21:30'),
-(7,'Toudoukan (Sugamo)',35.7340,139.7390,'11:00-21:00, off the map: 2 stops before Ikebukuro'),
-(8,'Disk Union Metal (Ochanomizu)',35.6998,139.7647,'12:00-20:00'),
-(9,'Disk Union Ikebukuro',35.7262,139.7135,'12:00-20:00'),
-(10,'Castle Gate (bar)',35.7312,139.7141,'19:00-24:00, closed Sun/Mon'),
-(11,'LANDSROCK (bar)',35.7345,139.7085,'19:00-5:00, closed Sun')]
-COURSE=[('A','Bows & anime','1 → 2 → 3 → 4 → 5',[('10:00','Pickup, hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:30','Marunouchi Line to Ikebukuro, 17 min'),('12:00','Animate main store (3)'),('13:10','Lunch, Kikanbo (4)'),('14:20','Pokémon Center, Sunshine City (5)'),('15:00','Done in Ikebukuro')]),
-('B','Bows, wrestling & anime','1 → 2 → 6 → 7 → 3',[('10:00','Pickup, hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:35','Lunch, Kikanbo Kanda (6)'),('12:25','Yamanote Line to Sugamo, 20 min'),('12:50','Toudoukan wrestling shop (7)'),('13:45','Yamanote, 2 stops to Ikebukuro'),('14:00','Animate main store (3)'),('15:00','Done in Ikebukuro')]),
-('C','Bows, records & metal','1 → 2 → 8 → 4 → 9 → 10',[('10:00','Pickup, hotel lobby (1)'),('10:15','Koyama Kyugu (2)'),('11:30','Walk to Ochanomizu, guitar street'),('12:00','Disk Union Hard Rock / Metal (8)'),('12:50','Marunouchi Line to Ikebukuro, 15 min'),('13:20','Lunch, Kikanbo (4)'),('14:10','Disk Union Ikebukuro (9)'),('15:00','Done in Ikebukuro'),('19:00','Optional: Castle Gate (10)')])]
+(2,'Kanda Myojin (shrine)',35.7019,139.7678,'Grounds open to walk through'),
+(3,'Koyama Kyugu (Kanda)',35.6949,139.7690,'10:00-19:00'),
+(4,'Animate Ikebukuro',35.7303,139.7152,'10:00-21:00'),
+(5,'Kikanbo Ikebukuro',35.7308,139.7132,'11:00-21:30'),
+(6,'Pokémon Center Mega Tokyo',35.7289,139.7192,'10:00-20:00'),
+(7,'Kikanbo Kanda',35.6930,139.7715,'11:00-21:30'),
+(8,'Toudoukan (Sugamo)',35.7340,139.7390,'11:00-21:00, off the map: 2 stops before Ikebukuro'),
+(9,'Disk Union Metal (Ochanomizu)',35.6998,139.7647,'12:00-20:00'),
+(10,'Disk Union Ikebukuro',35.7262,139.7135,'12:00-20:00'),
+(11,'Castle Gate (bar)',35.7312,139.7141,'19:00-24:00, closed Sun/Mon'),
+(12,'LANDSROCK (bar)',35.7345,139.7085,'19:00-5:00, closed Sun')]
+S=[('9:00','Pickup, hotel lobby (1)'),('9:15','Ginza Line to Suehirocho, 5 min'),('9:30','Kanda Myojin shrine (2)'),('10:15','Koyama Kyugu (3)')]
+COURSE=[('A','Bows & anime','1 → 2 → 3 → 4 → 5 → 6',S+[('11:00','Marunouchi Line to Ikebukuro, 17 min'),('11:30','Animate main store (4)'),('12:30','Lunch, Kikanbo (5)'),('13:30','Pokémon Center, Sunshine City (6)'),('14:00','Done in Ikebukuro')]),
+('B','Bows, wrestling & anime','1 → 2 → 3 → 7 → 8 → 4',S+[('11:00','Lunch, Kikanbo Kanda (7)'),('11:55','Yamanote Line to Sugamo, 20 min'),('12:20','Toudoukan wrestling shop (8)'),('13:10','Yamanote, 2 stops to Ikebukuro'),('13:20','Animate main store (4)'),('14:00','Done in Ikebukuro')]),
+('C','Bows, records & metal','1 → 2 → 3 → 5 → 10 → 9 → 11',S+[('11:00','Marunouchi Line to Ikebukuro, 17 min'),('11:20','Early lunch, Kikanbo (5)'),('12:10','Disk Union Ikebukuro (10)'),('13:00','Marunouchi Line to Ochanomizu, 15 min'),('13:15','Disk Union Hard Rock / Metal (9)'),('14:00','Done at Ochanomizu'),('19:00','Optional: Castle Gate (11)')])]
 cols=''.join(f'<div class="c"><h3><b>{i}</b> {n}</h3><p class="r">{r}</p><ol>'+''.join(f'<li><b>{t}</b>{x}</li>' for t,x in s)+'</ol></div>' for i,n,r,s in COURSE)
 legend=''.join(f'<li><i>{n}</i>{nm}<span>{h}</span></li>' for n,nm,_,_,h in PL)
 html=f'''<!doctype html><html><head><meta charset="utf-8"><title>Tokyo, Tuesday October 13</title>
@@ -27,7 +29,7 @@ html=f'''<!doctype html><html><head><meta charset="utf-8"><title>Tokyo, Tuesday 
 body{{font:9.5pt/1.35 -apple-system,"Helvetica Neue",Arial,sans-serif;color:#111;background:#fffdf6;padding:11mm 12mm}}
 .k{{font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#1a5c3a;font-weight:700;margin:0}}
 h1{{font-size:21pt;margin:1mm 0 1mm;letter-spacing:-.02em;line-height:1.1}} .sub{{color:#767065;margin:0 0 3mm;font-size:9.5pt}}
-.top{{display:flex;gap:4mm;height:92mm}} #map,#map2{{flex:1;border:1px solid #111;border-radius:2mm}}
+.top{{display:flex;gap:4mm;height:78mm}} #map,#map2{{flex:1;border:1px solid #111;border-radius:2mm}}
 ul.lg{{list-style:none;margin:3mm 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 4mm;font-size:7.8pt}} .lg li{{display:grid;grid-template-columns:5mm 1fr;gap:0 2mm;margin-bottom:1.3mm;line-height:1.25}} .lg i{{font-style:normal;background:#1a5c3a;color:#fff;border-radius:50%;width:4.6mm;height:4.6mm;text-align:center;font-weight:700;font-size:7.5pt;line-height:4.6mm;grid-row:span 2}} .lg span{{color:#767065}}
 .num{{background:#1a5c3a;color:#fff;border:1.5px solid #fff;border-radius:50%;width:22px;height:22px;text-align:center;font:700 12px/19px Arial}}
 .cs{{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:4mm}} .c{{border:1px solid #eae4d6;background:#fff;border-radius:2mm;padding:3mm}}
@@ -37,15 +39,15 @@ ul.lg{{list-style:none;margin:3mm 0 0;padding:0;display:grid;grid-template-colum
 </style></head><body>
 <p class="k">Tokyo · Tuesday, October 13 · Guide: Yuuki</p>
 <h1>Bows first, then Ikebukuro</h1>
-<p class="sub">Pickup at your hotel lobby (Mitsui Garden Hotel Nihonbashi Premier): time to be confirmed. Times below are if we start at 10:00. Pick one course.</p>
+<p class="sub">Pickup at your hotel lobby (Mitsui Garden Hotel Nihonbashi Premier) at 9:00. Done around 14:00. Pick one course.</p>
 <div class="top"><div id="map"></div><div id="map2"></div></div><ul class="lg">{legend}</ul>
 <div class="cs">{cols}</div>
-<div class="ft"><img src="data:image/png;base64,{qr}"><div><p><b>Full plan, photos and route maps:</b> {URL}</p><p>The two bars open in the evening, after the day plan, and are open on Tuesdays. Hours are from each shop's own site. Times are approximate and move with the pickup time.</p></div></div>
+<div class="ft"><img src="data:image/png;base64,{qr}"><div><p><b>Full plan, photos and route maps:</b> {URL}</p><p>The two bars open in the evening, after the day plan, and are open on Tuesdays. Hours are from each shop's own site. Times are approximate.</p></div></div>
 <script>var P={json.dumps([[n,la,lo] for n,_,la,lo,_ in PL])};
 function mk(id,ids){{var m=L.map(id,{{zoomControl:false}});L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:19,attribution:'© OpenStreetMap'}}).addTo(m);var pts=P.filter(function(p){{return ids.indexOf(p[0])>=0}});
 pts.forEach(function(p){{L.marker([p[1],p[2]],{{icon:L.divIcon({{className:'',html:'<div class="num">'+p[0]+'</div>',iconSize:[22,22],iconAnchor:[11,11]}})}}).addTo(m)}});
 m.fitBounds(pts.map(function(p){{return [p[1],p[2]]}}),{{padding:[26,26]}})}}
-mk('map',[1,2,6,8]);mk('map2',[3,4,5,9,10,11]);window.READY=0;
+mk('map',[1,2,3,7,9]);mk('map2',[4,5,6,10,11,12]);window.READY=0;
 setTimeout(function(){{window.READY=1}},6000);</script></body></html>'''
 open('/tmp/pdf.html','w').write(html)
 from playwright.sync_api import sync_playwright
