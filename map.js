@@ -17,16 +17,19 @@ L.polyline(ROUTE,{color:'#1a1a1a',weight:2,opacity:.35,dashArray:'4 6'}).addTo(m
 const done=L.polyline([],{color:red,weight:4}).addTo(m);
 const lab=(t,d,c)=>L.divIcon({className:'pk '+c,html:(c.includes('geo')?'':'<div class="pin"></div>')+'<span class="lb d-'+d+'">'+t+'</span>',iconSize:[14,14],iconAnchor:[7,7]});
 GEO.forEach(g=>L.marker([g[0],g[1]],{icon:lab(g[2],'c','geo'),interactive:false}).addTo(m));
-const mk=P.map(p=>p&&L.marker([p[0],p[1]],{icon:lab(p[3],p[4],''),interactive:false}).addTo(m));
+const mk=P.map(p=>p&&p[3]!==''&&L.marker([p[0],p[1]],{icon:lab(p[3],p[4],''),interactive:false}).addTo(m));
+const lunchL=L.layerGroup();LUNCH.forEach(c=>L.marker([c[0],c[1]],{icon:lab(c[2],c[3],'cafe'),interactive:false}).addTo(lunchL));
+const lunchB=L.latLngBounds(LUNCH.map(c=>[c[0],c[1]])).pad(.55);
 const where=document.querySelector('.where'); let cur=-1;
 const setW=(d,t)=>{where.firstChild.textContent=d;where.lastChild.textContent=t};
-function go(i){if(i===cur)return;cur=i;document.getElementById('map').classList.toggle('far',i===0);
+function go(i){if(i===cur)return;cur=i;document.getElementById('map').classList.toggle('far',i===0);lunchL[i===LI?'addTo':'remove'](m);document.getElementById('map').classList.toggle('lunch',i===LI);
  document.querySelectorAll('.step').forEach((s,j)=>s.classList.toggle('on',j===i));
  mk.forEach((k,j)=>k&&k.getElement()&&k.getElement().classList.toggle('on',j===i));
  document.querySelectorAll('.dn').forEach((b,j)=>{b.classList.toggle('on',j===i);if(j===i)b.parentNode.scrollTo({left:b.offsetLeft-b.parentNode.offsetLeft-b.parentNode.clientWidth/2+16})});
  document.querySelectorAll('.ar').forEach(b=>b.disabled=(i+ +b.dataset.d<0||i+ +b.dataset.d>=P.length));
  done.setLatLngs(P.slice(1,i+1).filter(Boolean).map(p=>[p[0],p[1]]));
  if(!P[i]){m.flyToBounds(all,{duration:.8});setW('Tue, October 13','The whole day');return}
+ if(i===LI){m.flyToBounds(lunchB,{duration:.8});setW(DAYS[i],P[i][2]);return}
  m.flyTo([P[i][0],P[i][1]],i===1?13:i===2?14:15,{duration:.8}); setW(DAYS[i],P[i][2]);}
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)go(+en.target.dataset.i)}),{rootMargin:'-55% 0px -40% 0px'});
 document.querySelectorAll('.step').forEach(s=>io.observe(s));
