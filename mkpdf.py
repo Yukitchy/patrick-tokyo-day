@@ -41,14 +41,18 @@ def px(lat, lon, z):
 def tile(z, x, y):
     p = f'{CACHE}/t_{z}_{x}_{y}.png'
     if not os.path.exists(p):
-        open(p, 'wb').write(get(f'https://tile.openstreetmap.org/{z}/{x}/{y}.png', True)); time.sleep(0.15)
+        data = get(f'https://tile.openstreetmap.org/{z}/{x}/{y}.png', True)
+        if not data: raise SystemExit(f'tile download failed: {z}/{x}/{y}')  # don't leave a 0-byte tile in the cache
+        open(p, 'wb').write(data); time.sleep(0.15)
     return Image.open(p).convert('RGB')
 def foot(a, b):
     p = f'{CACHE}/r_{a[0]:.5f}_{a[1]:.5f}_{b[0]:.5f}_{b[1]:.5f}.json'
     if not os.path.exists(p):
         r = get(f'https://routing.openstreetmap.de/routed-foot/route/v1/foot/{a[1]},{a[0]};{b[1]},{b[0]}?overview=full&geometries=geojson')
         try: line = [[y, x] for x, y in r['routes'][0]['geometry']['coordinates']]
-        except Exception: line = [list(a), list(b)]
+        except Exception:
+            print(f'warn: walking route failed, straight line used (not cached): {a} -> {b}')
+            return [list(a), list(b)]
         json.dump(line, open(p, 'w'))
     return json.load(open(p))
 def font(sz):
