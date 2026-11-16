@@ -1,0 +1,107 @@
+{
+ "guest": {
+  "for": "<GUEST NAMES>",
+  "short": "<FIRST NAME>"
+ },
+ "title": "<PAGE TITLE, e.g. Finding X & Y in Tokyo>",
+ "kicker": "GUEST GUIDE",
+ "guide": "Yuuki",
+ "date_line": "<One day, west to east · roughly HH:MM to HH:MM>",
+ "base_url": "https://yukitchy.github.io/<repo-name>/",
+ "out_dir": "/Users/<you>/<repo-name>   (its own git repo, never inside this project)",
+ "pdf_name": "<name>-route.pdf",
+ "intro": "<2 sentences: what they are looking for and what this page gives them>",
+ "honest_title": "The honest part",
+ "honest": [
+  "<stock reality for character 1>",
+  "<stock reality for character 2>",
+  "<no guarantee line>"
+ ],
+ "already_tried": "<shops they already visited / one clarification that matters>",
+ "characters": [
+  {
+   "key": "char1",
+   "ja": "<JP name>",
+   "en": "<EN name>",
+   "series_ja": "<JP series title>",
+   "series_en": "<EN series title>",
+   "want_ja": "ぬいぐるみやフィギュア  (or ぬいぐるみやグッズ)",
+   "photo": "photos/char1.jpg",
+   "caption": "<caption>",
+   "credit": "<photo source, URL>"
+  },
+  {
+   "key": "char2",
+   "ja": "<JP name>",
+   "en": "<EN name>",
+   "series_ja": "<JP series title>",
+   "series_en": "<EN series title>",
+   "want_ja": "ぬいぐるみやフィギュア  (or ぬいぐるみやグッズ)",
+   "photo": "photos/char2.jpg",
+   "caption": "<caption>",
+   "credit": "<photo source, URL>"
+  }
+ ],
+ "extra_photos": [
+  {
+   "photo": "photos/extra1.jpg",
+   "credit": "<source>"
+  }
+ ],
+ "card": {
+  "title": "Show this to the staff",
+  "generic_ja": "このアニメのこのキャラクターのグッズはありますか？",
+  "generic_en": "Do you have goods of this character from this anime?",
+  "used_ja": "中古でも大丈夫です",
+  "used_en": "Second-hand is fine."
+ },
+ "stops": [
+  {
+   "n": 1,
+   "time": "HH:MM",
+   "name": "<Shop EN>",
+   "jp": "<店名>",
+   "area": "<Area>",
+   "tag": "<short tag>",
+   "label": "<2-word label for map/PDF>",
+   "map": "A",
+   "leg": "foot|train|none",
+   "look": "<what to look for>",
+   "hours": "<verified hours + source, or: check the shop's page on the day>",
+   "lat": 0.0,
+   "lon": 0.0,
+   "q": "<Google Maps search text>",
+   "url": "<official URL or empty>",
+   "next": "<how to get to the next stop>"
+  }
+ ],
+ "maps": [
+  {
+   "id": "A",
+   "label": "<Area name>",
+   "stations": [
+    [
+     "<Station>",
+     0.0,
+     0.0
+    ]
+   ],
+   "zmax": 17
+  }
+ ],
+ "online_title": "If the shops come up empty",
+ "online": [
+  {
+   "name": "<Where>",
+   "text": "<one line>",
+   "url": "<link>"
+  }
+ ],
+ "tip": {
+  "title": "A small thank-you",
+  "text": "<tip sentence, ending in: It is never expected.>",
+  "button": "Leave a tip",
+  "url": "<tip link or remove the tip block>"
+ },
+ "footer_note": "Times are approximate and shops can close early or change hours. Message Yuuki if you want to change anything."
+}
